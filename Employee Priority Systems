@@ -1,0 +1,17 @@
+class Solution:
+    def findHighAccessEmployees(self, access_times: List[List[str]]) -> List[str]:
+        d={}
+        ans=[]
+        for i in access_times:
+            if i[0] in d:
+                d[i[0]].append(i[1])
+            else:
+                d[i[0]]=[i[1]]
+        for i,j in d.items():
+            j.sort()
+            count=0
+            for k in range(len(j)-2):
+                if int(j[k+2])-int(j[k])<100:
+                    ans.append(i)
+                    break
+        return ans
